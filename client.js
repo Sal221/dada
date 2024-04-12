@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 let typingTimer;
-const doneTypingInterval = 30000; // 30 seconds
+const doneTypingInterval = 10000; // 30 seconds
 
 document.addEventListener('DOMContentLoaded', function() {
     var socket = io();
