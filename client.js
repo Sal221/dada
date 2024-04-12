@@ -46,3 +46,35 @@ document.addEventListener('DOMContentLoaded', function() {
         messageContainer.appendChild(messageElement);
     });
 });
+
+let typingTimer;
+const doneTypingInterval = 30000; // 30 seconds
+
+document.addEventListener('DOMContentLoaded', function() {
+    var socket = io();
+
+    // Event handler for receiving updates
+    socket.on('update', function(data) {
+        // Update UI to display the new message
+        var messageContainer = document.getElementById('message-container');
+        var messageElement = document.createElement('div');
+        messageElement.innerText = data.sender + ': ' + data.message;
+        messageContainer.appendChild(messageElement);
+    });
+
+    // Event handler for when user starts typing
+    document.querySelector('input[name="message"]').addEventListener('input', function() {
+        clearTimeout(typingTimer);
+    });
+
+    // Event handler for when user stops typing
+    document.querySelector('input[name="message"]').addEventListener('keyup', function() {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(refreshPage, doneTypingInterval);
+    });
+
+    // Function to refresh the page
+    function refreshPage() {
+        window.location.reload();
+    }
+});
