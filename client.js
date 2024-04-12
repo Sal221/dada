@@ -26,9 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to refresh the page
     function refreshPage() {
+        console.log("Page will be refreshed");
         window.location.reload();
     }
-    });
 });
-
-
